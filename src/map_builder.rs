@@ -16,7 +16,7 @@ impl MapBuilder {
         while self.rooms.len() < NUM_ROOMS {
             let room = Rect::with_size(
                 rng.range(1, SCREEN_WIDTH - 10),
-                rng.range(1, SCRREN_HEIGHT - 10),
+                rng.range(1, SCREEN_HEIGHT - 10),
                 rng.range(2, 10),
                 rng.range(2, 10),
             );
@@ -28,7 +28,7 @@ impl MapBuilder {
             }
             if !overlap {
                 room.for_each(|p| {
-                    if p.x > 0 && p.x < SCREEN_WIDTH && p.y > 0 && p.y < SCRREN_HEIGHT {
+                    if p.x > 0 && p.x < SCREEN_WIDTH && p.y > 0 && p.y < SCREEN_HEIGHT {
                         let idx = map_idx(p.x, p.y);
                         self.map.tiles[idx] = TileType::Floor;
                     }
@@ -63,10 +63,10 @@ impl MapBuilder {
 
             if rng.range(0, 2) == 1 {
                 self.apply_horizontal_tunnel(prev.x, new.x, prev.y);
-                self.apply_vertical_tunnel(prev.y, new.y, prev.x);
+                self.apply_vertical_tunnel(prev.y, new.y, new.x);
             } else {
                 self.apply_vertical_tunnel(prev.y, new.y, prev.x);
-                self.apply_horizontal_tunnel(prev.x, new.x, prev.y);
+                self.apply_horizontal_tunnel(prev.x, new.x, new.y);
             }
         }
     }
