@@ -33,7 +33,7 @@ impl MapBuilder {
                         self.map.tiles[idx] = TileType::Floor;
                     }
                 });
-                self.rooms.push(room)
+                self.rooms.push(room);
             }
         }
     }
@@ -41,7 +41,7 @@ impl MapBuilder {
         use std::cmp::{max, min};
         for y in min(y1, y2)..=max(y1, y2) {
             if let Some(idx) = self.map.try_idx(Point::new(x, y)) {
-                self.map.tiles[idx as usize] = TileType::Floor;
+                self.map.tiles[idx] = TileType::Floor;
             }
         }
     }
@@ -49,7 +49,7 @@ impl MapBuilder {
         use std::cmp::{max, min};
         for x in min(x1, x2)..=max(x1, x2) {
             if let Some(idx) = self.map.try_idx(Point::new(x, y)) {
-                self.map.tiles[idx as usize] = TileType::Floor;
+                self.map.tiles[idx] = TileType::Floor;
             }
         }
     }
